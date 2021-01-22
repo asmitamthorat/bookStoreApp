@@ -17,7 +17,8 @@ namespace ServiceLayer.Implimentation
         }
         public BookProduct AddBook(BookProduct book) {
 
-            return _repository.AddBook(book);
+          BookProduct result= _repository.AddBook(book);
+            return result;
         }
     }
 }

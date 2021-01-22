@@ -20,7 +20,11 @@ namespace RepositoryLayer.Implimentation
         }
 
         public BookProduct AddBook(BookProduct book) {
-            SqlCommand command = new SqlCommand("insert into Book(bookName,bookImage,author,description,quantity,price,addedTocard) values(@bookName,@bookImage,@author,@description,@quantity,@price,@addedTocard)");
+        ///    SqlCommand command = new SqlCommand("insert into Book(bookName,bookImage,author,description,quantity,price,addedTocard) values(@bookName,@bookImage,@author,@description,@quantity,@price,@addedTocard)");
+            SqlCommand command = new SqlCommand("spAddBook")
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
             command.Parameters.AddWithValue("@bookName", book.bookName);
             command.Parameters.AddWithValue("@bookImage", book.bookImage);
             command.Parameters.AddWithValue("@author", book.author);
