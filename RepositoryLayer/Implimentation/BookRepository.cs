@@ -39,5 +39,77 @@ namespace RepositoryLayer.Implimentation
             return book;
 
         }
+      
+         public List<BookProduct> getBooks()
+         {
+             List<BookProduct> books = new List<BookProduct>();
+             using (_conn)
+             {
+                   _conn.Open();
+                   SqlCommand command = new SqlCommand("Select bookId, bookName ,bookImage , author, description, quantity,price,addedTocard from Book ", _conn);
+                   using (SqlDataReader reader = command.ExecuteReader())
+                   {
+                            while (reader.Read())
+                            {
+                                books.Add(new BookProduct
+                                {
+                                 /*   bookId = (int)reader[" bookId"],*/
+                                    bookName=(string)reader["bookName"],
+                                    bookImage=(string)reader["bookImage"],
+                                    price = (int)reader["price"],
+                                    quantity = (int)reader["quantity"],
+                                    author = (string)reader["author"],
+                                    description = (string)reader["description"]
+                                });
+                            }
+                   }
+                   _conn.Close();
+             }
+                    return books;
+         }
+
+
+        public int deleteBook(int id) {
+            SqlCommand command = new SqlCommand("spdeleteBook")
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+            command.Parameters.AddWithValue("@bookId", id);
+            _conn.Open();
+            command.Connection = _conn;
+            command.ExecuteNonQuery();
+            _conn.Close();
+            return id;
+
+        }
+
+        public List<BookProduct> getBookById(int id) {
+            List<BookProduct> book = new List<BookProduct>();
+            _conn.Open();
+            SqlCommand command = new SqlCommand("spGetBookById",_conn)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+            command.Parameters.AddWithValue("@bookId", id);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    book.Add(new BookProduct
+                    {
+                  /*      bookId = (int)reader[" bookId"],*/
+                        bookName = (string)reader["bookName"],
+                        bookImage = (string)reader["bookImage"],
+                        price = (int)reader["price"],
+                        quantity = (int)reader["quantity"],
+                        author = (string)reader["author"],
+                        description = (string)reader["description"]
+                    });
+                }
+            }
+            _conn.Close();
+            return book;
+        }
+        
     }
 }

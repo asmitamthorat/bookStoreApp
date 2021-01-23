@@ -6,10 +6,8 @@ namespace ServiceLayer.Implimentation
 {
     public class response<T>
     {
-        public T Data { get; set; }
-
-        public bool Success { get; set; } = true;
-
+        public int StatusCode { get; set; }
         public String Message { get; set; } = null;
+        public T Data { get; set; }
     }
 }

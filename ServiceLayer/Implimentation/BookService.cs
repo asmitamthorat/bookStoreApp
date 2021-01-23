@@ -7,18 +7,33 @@ using System.Text;
 
 namespace ServiceLayer.Implimentation
 {
-    public class BookService:IBookService
+    public class BookService : IBookService
     {
-        private IBookRepository _repository ;
+        private IBookRepository _repository;
         public BookService(IBookRepository repository)
         {
             _repository = repository;
-         
+
         }
         public BookProduct AddBook(BookProduct book) {
 
-          BookProduct result= _repository.AddBook(book);
+            BookProduct result = _repository.AddBook(book);
             return result;
+        }
+
+        public int deleteBook(int id) {
+            int result = _repository.deleteBook(id);
+            return result;
+        }
+
+        public List<BookProduct> getBooks() {
+            List<BookProduct> result = _repository.getBooks();
+            return result;
+        }
+
+        public List<BookProduct> getBookById( int id){
+            List<BookProduct> book = _repository.getBookById(id);
+            return book;
         }
     }
 }

@@ -7,6 +7,9 @@ namespace ServiceLayer.Interface
 {
     public interface IBookService
     {
-      BookProduct AddBook(BookProduct book);
+        BookProduct AddBook(BookProduct book);
+        List<BookProduct> getBooks();
+        int deleteBook(int id);
+        List<BookProduct> getBookById(int id);
     }
 }
