@@ -35,5 +35,11 @@ namespace ServiceLayer.Implimentation
             List<BookProduct> book = _repository.getBookById(id);
             return book;
         }
+
+        public List<BookProduct> updateBook(int id,BookProduct book) {
+            List<BookProduct> result = _repository.updateBook(id,book);
+            return result;
+        
+        }
     }
 }

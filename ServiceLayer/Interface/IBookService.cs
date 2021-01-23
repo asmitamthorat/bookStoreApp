@@ -11,5 +11,6 @@ namespace ServiceLayer.Interface
         List<BookProduct> getBooks();
         int deleteBook(int id);
         List<BookProduct> getBookById(int id);
+        List<BookProduct> updateBook(int id, BookProduct book);
     }
 }

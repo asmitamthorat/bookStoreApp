@@ -49,5 +49,11 @@ namespace bookStoreApp.Controllers
             return Ok(book);
         }
 
+        [HttpPost("{id}")]
+        public IActionResult updateBook(int id, [FromBody] BookProduct book) {
+            List<BookProduct> result = _service.updateBook(id,book);
+            return Ok(new response<List<BookProduct>> { StatusCode = (int)HttpStatusCode.OK, Message = "successful", Data = result });
+        }
+
     }
 }
