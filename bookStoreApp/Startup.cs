@@ -37,6 +37,8 @@ namespace bookStoreApp
             services.AddScoped<IuserService, userService>();
             services.AddScoped<IuserRepository, userRepository>();
             services.AddScoped<ITokenManager,TokenManager>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<ICartService,CartService>();
 
             services.AddSwaggerGen(options =>
             {
