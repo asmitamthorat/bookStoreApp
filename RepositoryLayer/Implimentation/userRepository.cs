@@ -38,8 +38,8 @@ namespace RepositoryLayer.Implimentation
             return userData;
         }
 
-        public List<userRegistration> loginUser(userRegistration userData) {
-            List<userRegistration> user = new List<userRegistration>();
+        public userRegistration loginUser(userRegistration userData) {
+           userRegistration user = new userRegistration();
             _conn.Open();
             SqlCommand command = new SqlCommand("spGetuser", _conn)
             {
@@ -51,13 +51,14 @@ namespace RepositoryLayer.Implimentation
             {
                 while (reader.Read())
                 {
-                    user.Add(new userRegistration
+                    user=(new userRegistration
                     {
-                        /*      bookId = (int)reader[" bookId"],*/
+                        userId = (int)reader["userId"],
                         firstName = (string)reader["firstName"],
                         lastName = (string)reader["lastName"],
                         email = (string)reader["email"],
-                        password = (string)reader["password"]
+                        password = (string)reader["password"],
+                        role=(string)reader["role"]
                     });
                 }
             }

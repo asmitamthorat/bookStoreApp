@@ -28,9 +28,10 @@ namespace bookStoreApp.Controllers
         }
 
         [HttpPost]
+        [Route("login")]
         public IActionResult loginUser([FromBody] userRegistration userData) {
-            userRegistration result = _service.loginUser(userData);
-            return Ok(new response<userRegistration> { StatusCode = (int)HttpStatusCode.OK, Message = "successful", Data = result });
+            string result = _service.loginUser(userData);
+            return Ok(new response<string> { StatusCode = (int)HttpStatusCode.OK, Message = "successful", Data = result });
 
         }
     }

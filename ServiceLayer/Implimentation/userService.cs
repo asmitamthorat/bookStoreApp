@@ -1,6 +1,7 @@
 ﻿using ModelLayer;
 using RepositoryLayer.Interface;
 using ServiceLayer.Interface;
+using ServiceLayer.TokenAuthentication;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,9 +11,11 @@ namespace ServiceLayer.Implimentation
     public class userService:IuserService
     {
         private IuserRepository _repository;
-        public userService(IuserRepository repository)
+        ITokenManager _tokenManager;
+        public userService(IuserRepository repository, ITokenManager tokenManager)
         {
             _repository = repository;
+            _tokenManager = tokenManager;
 
         }
        
@@ -21,9 +24,10 @@ namespace ServiceLayer.Implimentation
             return result;
         }
 
-        public userRegistration loginUser(userRegistration userData) {
+        public string loginUser(userRegistration userData) {
             userRegistration result = _repository.loginUser(userData);
-            return result;
+            string token = _tokenManager.GenerateToken(result);
+            return token;
         }
 
 

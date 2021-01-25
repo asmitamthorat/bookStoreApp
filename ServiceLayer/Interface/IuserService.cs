@@ -9,6 +9,6 @@ namespace ServiceLayer.Interface
     {
         userRegistration addUser(userRegistration userData);
 
-        userRegistration loginUser(userRegistration userData);
+        string loginUser(userRegistration userData);
     }
 }
