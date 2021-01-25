@@ -32,6 +32,8 @@ namespace bookStoreApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IuserService, userService>();
+            services.AddScoped<IuserRepository, userRepository>();
 
            
 
