@@ -40,9 +40,21 @@ namespace RepositoryLayer.Implimentation
         }
 
 
+        public int RemoveFromCart(int userId, int bookId) 
+        {
+            _conn.Open();
+            SqlCommand command = new SqlCommand("spRemoveFromCart",_conn)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+            command.Parameters.AddWithValue("@bookId",bookId);
+            command.Parameters.AddWithValue("@userId",userId);
+            
+            int isDeleted = command.ExecuteNonQuery();
+            _conn.Close();
+            return isDeleted;
 
-
-
+        }
 
     }
 }

@@ -20,5 +20,12 @@ namespace ServiceLayer.Implimentation
             CartItem result = _repository.AddToCart( userId, cart);
             return result;
         }
+
+        public int RemoveFromCart(int userId, int bookId) 
+        {
+           
+            int result = _repository.RemoveFromCart(userId,bookId);
+            return result;
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace ServiceLayer.Interface
     public interface ICartService
     {
         CartItem AddTocart(int userId, CartItem cart);
+        int RemoveFromCart(int userId, int bookId);
     }
 }
