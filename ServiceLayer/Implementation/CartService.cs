@@ -27,5 +27,11 @@ namespace ServiceLayer.Implimentation
             int result = _repository.RemoveFromCart(userId,bookId);
             return result;
         }
+
+        public List<CartItem> GetCartOfUser(int userId) 
+        {
+            List<CartItem> result = _repository.GetCartOfUser(userId);
+            return result;
+        }
     }
 }

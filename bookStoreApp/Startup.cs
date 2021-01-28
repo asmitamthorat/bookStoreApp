@@ -7,8 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using RepositoryLayer.Implementation;
 using RepositoryLayer.Implimentation;
 using RepositoryLayer.Interface;
+using ServiceLayer.Implementation;
 using ServiceLayer.Implimentation;
 using ServiceLayer.Interface;
 using ServiceLayer.TokenAuthentication;
@@ -39,6 +41,9 @@ namespace bookStoreApp
             services.AddScoped<ITokenManager,TokenManager>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<ICartService,CartService>();
+            services.AddScoped<ICustomerDetailsService, CustomerDetailsService>();
+            services.AddScoped<RepositoryLayer.Interface.ICustomerDetailsRepository, CustomerDetailsRepository>();
+        
 
             services.AddSwaggerGen(options =>
             {

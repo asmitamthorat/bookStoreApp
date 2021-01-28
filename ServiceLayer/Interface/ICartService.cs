@@ -9,5 +9,7 @@ namespace ServiceLayer.Interface
     {
         CartItem AddTocart(int userId, CartItem cart);
         int RemoveFromCart(int userId, int bookId);
+        List<CartItem> GetCartOfUser(int userId);
     }
 }
+

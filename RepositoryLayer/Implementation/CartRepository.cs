@@ -56,5 +56,32 @@ namespace RepositoryLayer.Implimentation
 
         }
 
+        public List<CartItem> GetCartOfUser(int userId) 
+        {
+            List<CartItem> CartList = new List<CartItem>();
+            _conn.Open();
+            SqlCommand command = new SqlCommand("spGetCardById", _conn)
+            {
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
+            command.Parameters.AddWithValue("@userId", userId);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    CartList.Add(new CartItem
+                    {
+                      /*  bookId = (int)reader[" bookId"],*/
+                        quantity = (int)reader["quanity"],
+                        cartItem_id = (int)reader["cartItem_id"],
+                        price = (int)reader["price"]
+                       
+                    });
+                }
+            }
+            _conn.Close();
+            return CartList;
+        }
+
     }
 }

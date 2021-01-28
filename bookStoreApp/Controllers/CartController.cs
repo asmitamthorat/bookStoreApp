@@ -38,6 +38,15 @@ namespace bookStoreApp.Controllers
             int result = _service.RemoveFromCart(userId, bookId);
             return Ok(new response<CartItem> { StatusCode = (int)HttpStatusCode.OK, Message = "successful", Data = null });
         }
+
+        [HttpGet]
+        public IActionResult GetCartOfUser() 
+        {
+            int userId = Convert.ToInt32(HttpContext.Items["userId"]);
+            List<CartItem> result = _service.GetCartOfUser(userId);
+            return Ok(new response<List<CartItem>> { StatusCode = (int)HttpStatusCode.OK, Message = "successful", Data = result });
+
+        }
         
     }
 }

@@ -9,5 +9,6 @@ namespace RepositoryLayer.Interface
     {
         CartItem AddToCart(int userId, CartItem cart);
         int RemoveFromCart(int userId, int bookId);
+        List<CartItem> GetCartOfUser(int userId);
     }
 }
